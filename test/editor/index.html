@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Editor</title>
+  <link rel="stylesheet" type="text/css" href="css/codemirror.min.css">
+  <link rel="stylesheet" type="text/css" href="css/codemirror/abcdef.theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/vis.min.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/$$$-my-language.js"></script>
+  <script src="js/codemirror.js"></script>
+  <script src="js/vis.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular/ui-codemirror.min.js"></script>
+  <script src="js/angular/ui-bootstrap.min.js"></script>
+  <script src="js/angular/ui-bootstrap.tpls.min.js"></script>
+  <script src="js/angular/service/language-creator.service.js"></script>
+  <script src="js/angular/module/network-visualizer.module.js"></script>
+  <script src="js/angular/module/language-creator-app.js"></script>
+  <script src="js/angular/controller/editor-header.controller.js"></script>
+  <style type="text/css">
+    #network-visualizer-1 > div > canvas {
+      height: 600px !important;
+      background-color: white;
+      border-radius: 3pt;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app" ng-app="LanguageCreatorApp">
+    <div class="container">
+      <div class="row" ng-controller="EditorHeaderCtrl as ctrl">
+        <div class="col-xs-12">
+          <div class="text-right text-monospace" style="position: fixed; bottom: 0; right: 0;">
+            <!--div style="color: black;text-shadow: 0 0 2px black;">{{ ctrl.lastUpdate | date:'a HH:mm:ss.sss @ dd/MM/yyyy' }}</div-->
+          </div>
+          <div class="row">
+            
+            <!--output-->
+            <div class="col-xs-12 col-sm-6" style="position:relative">
+              <button class="btn btn-sm btn-default" type="button" style="position:absolute; top: 11px; left: auto; right: 30px; bottom: auto; z-index:1000" ng-click="ctrl.ui.state.outputMode = ctrl.ui.state.outputMode === 'editor' ? 'visualization' : 'editor'">{{ ctrl.ui.state.outputMode === "editor" ? "Visualization" : "Editor" }}</button>
+              <div style="height: 2px;"></div>
+              <div class="badge text-monospace" style="width:100%; cursor:pointer; font-size:17px;" ng-click="ctrl.ui.state.outputEditor.hide = !ctrl.ui.state.outputEditor.hide">Output</div>
+              <div style="height: 2px;"></div>
+              <div ng-switch="ctrl.ui.state.outputMode">
+                <div ng-switch-when="editor">
+                  <div ui-codemirror ng-model="ctrl.editors.output.value" ui-codemirror-opts="ctrl.editors.output.options" ng-hide="ctrl.ui.state.outputEditor.hide === true" ng-class="{'editor-output':true}"></div>
+                </div>
+                <div ng-switch-when="visualization">
+                  <network-visualizer id="network-visualizer-1" network-model="ctrl.editors.output.value"></network-visualizer>
+                </div>
+              </div>
+            </div>
+            <!--//output-->
+
+            <!--input-->
+            <div class="col-xs-12 col-sm-6">
+              <div style="height: 2px;"></div>
+              <div class="badge text-monospace" style="width:100%; cursor:pointer; font-size:17px;" ng-click="ctrl.ui.state.inputEditor.hide = !ctrl.ui.state.inputEditor.hide">Input</div>
+              <div style="height: 2px;"></div>
+              <div ui-codemirror ng-model="ctrl.editors.input.value" ui-codemirror-opts="ctrl.editors.input.options" ng-hide="ctrl.ui.state.inputEditor.hide === true" ng-class="{'editor-input':true}"></div>
+            </div>
+            <!--//input-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

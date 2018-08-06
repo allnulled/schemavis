@@ -1,0 +1,39 @@
+body {
+  background: transparent;
+}
+
+html {
+	background-color: #E0E0E0;
+	/*
+  background-image: url("../img/background-leafs.jpg");
+  background-repeat: repeat;
+  background-position: right top;
+  background-size: 70px 70px;
+  */
+}
+
+.cm-s-abcdef.CodeMirror {
+  background: rgba(15, 15, 15, 0.9);
+}
+
+.CodeMirror {
+  height: 600px !important;
+}
+
+.lint-error {
+	background-color: yellow;
+	color: black;
+	text-shadow: 0 0 2pt black;
+	border-radius: 4pt;
+	padding: 3px;
+	font-size: 11px;
+}
+
+.editor-error-custom {
+	background-color: red;
+	color: white;
+}
+
+.editor-output .CodeMirror {
+	font-size: 10px;
+}

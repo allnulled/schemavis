@@ -1,0 +1,41 @@
+{
+  "name": "schemavis",
+  "version": "1.0.0",
+  "description": "Project to create new programming languages.",
+  "main": "bin/generate.js",
+  "scripts": {
+    "clean": "rimraf tmp node_modules",
+    "visit": "google-chrome http://127.0.0.1:9090",
+    "serve": "http-server test/editor -p 9090",
+    "develop": "grunt develop",
+    "build": "grunt build",
+    "docs": "grunt docs",
+    "test": "mocha test/unit/*.spec.js",
+    "all": "npm run develop & npm run visit & npm run serve"
+  },
+  "bin": {
+    "languages-creator:init": "bin/generate.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chokidar": "^2.0.4",
+    "colorized-logger": "^1.0.3",
+    "execute-command-sync": "^1.0.2",
+    "fs-extra": "^6.0.1",
+    "globby": "^8.0.1",
+    "grunt": "^1.0.3",
+    "http-server": "^0.11.1",
+    "javadoc": "^1.0.3",
+    "mocha": "^5.2.0",
+    "pegjs": "^0.10.0",
+    "pivotpath": "^1.1.2",
+    "require-newly": "^1.0.1",
+    "rimraf": "^2.6.2"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
